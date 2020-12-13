@@ -22,7 +22,7 @@ class AddressFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->word(random_int(2, 8)),
+            'user_id' => random_int(2, 8),
             'name' => $this->faker->word(),
             'detail' => $this->faker->address(random_int(160, 480)),
         ];
