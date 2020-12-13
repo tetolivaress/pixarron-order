@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Order;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,5 +20,9 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::get('/through', function () {
+    return Order::with('user')->find(1);
+});
 
 require __DIR__.'/auth.php';

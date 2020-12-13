@@ -12,7 +12,9 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
-
+    public function orders(){
+        return $this->hasManyThrough(Order::class, Address::class);
+    }
 
     public function addresses()
 	{
