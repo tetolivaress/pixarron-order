@@ -48,4 +48,10 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+    public function index()
+    {
+        $users = User::with('addresses')->orderBy('name')->paginate(5);
+        return view('users.index', ['users' => $users]);
+    }
 }
