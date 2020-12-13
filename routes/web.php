@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
@@ -23,5 +24,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/user', [RegisteredUserController::class, 'index'])->middleware('auth')->name('users.index');
+Route::get('/product', [ProductController::class, 'index'])->middleware('auth')->name('products.index');
 
 require __DIR__.'/auth.php';
