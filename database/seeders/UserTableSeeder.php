@@ -8,13 +8,13 @@ use Hash, Log;
 
 class UserTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
+        User::factory()
+            ->times(9)
+            ->hasAddresses(3)
+            ->create();
+
 		try {
 			User::create([
 				'name' => 'Jesus Olivares',
