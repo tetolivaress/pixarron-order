@@ -3,13 +3,13 @@
 @section('section')
     <div class="container mx-auto">
         <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-            <h1 class="text-xl text-center py-3">Listado de Usuarios</h1>
+            <h1 class="text-xl text-center py-3">Users List</h1>
             <table class="min-w-full mb-3">
                 <thead>
                     <tr>
-                        <th class="px-6 py-3 border-gray-300 leading-4 text-blue-500 tracking-wider">Nombre</th>
+                        <th class="px-6 py-3 border-gray-300 leading-4 text-blue-500 tracking-wider">Name</th>
                         <th class="px-6 py-3 border-gray-300 leading-4 text-blue-500 tracking-wider">Email</th>
-                        <th class="px-6 py-3 border-gray-300 leading-4 text-blue-500 tracking-wider">Direcciones</th>
+                        <th class="px-6 py-3 border-gray-300 leading-4 text-blue-500 tracking-wider">Addresses</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white">
