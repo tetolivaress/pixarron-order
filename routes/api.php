@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PassportAuthController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -18,15 +19,9 @@ use App\Models\User;
 */
 
 Route::group(['middleware' => ['auth:api'], 'prefix' => 'user'], function(){
-    Route::get('/', function (Request $request) {
-        return User::with(['orders.products', 'addresses'])->find(Auth::user()->id);
-    });
-    Route::get('/orders', function (Request $request) {
-        return User::with(['orders.products', 'addresses'])->find(Auth::user()->id)->orders;
-    });
-    Route::get('/addresses', function (Request $request) {
-        return User::with(['orders.products', 'addresses'])->find(Auth::user()->id)->addreses;
-    });
+		Route::get('/', [RegisteredUserController::class, 'index']);
+		Route::get('/orders', [RegisteredUserController::class, 'listOrders']);
+		Route::get('/addresses', [RegisteredUserController::class, 'listAddresses']);
 });
 
 

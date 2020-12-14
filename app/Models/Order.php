@@ -12,10 +12,10 @@ class Order extends Model
 	public function address()
 	{
 		return $this->belongsTo(Address::class);
-    }
+	}
 
 	public function products()
 	{
 		return $this->belongsToMany(Product::class, 'order_products');
-    }
+	}
 }

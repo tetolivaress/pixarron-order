@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\{User, Order};
 use App\Providers\RouteServiceProvider;
+use App\Http\Resources\{UserResource};
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,7 +52,19 @@ class RegisteredUserController extends Controller
 
     public function index()
     {
-        $users = User::with('addresses')->orderBy('name')->paginate(5);
-        return view('users.index', ['users' => $users]);
+				return new UserResource(User::find(Auth::id()));
+        // return User::with(['orders.products', 'addresses'])->find(Auth::user()->id);
+    }
+
+    public function listOrders()
+    {
+				$orders = Order::with(['address.user', 'products'])->orderBy('created_at')->get();
+				return $orders->where('address.user.id', Auth::id());
+    }
+
+    public function listAddresses()
+    {
+				$user = new UserResource(User::find(Auth::id()));
+				return $user->addresses;
     }
 }
