@@ -18,10 +18,11 @@
                             <td class="px-6 py-3 text-center whitespace-no-wrap border-b border-gray-500 text-sm leading-5">{{ $order->address->user->name }}</td>
                             <td class="px-6 py-3 text-center whitespace-no-wrap border-b border-gray-500 text-sm leading-5">{{ $order->address->detail }}</td>
                             <td class="px-6 py-3 text-left whitespace-no-wrap border-b border-gray-500 text-sm leading-5">
-                                @foreach ($order->products as $product)
-                                    <b>{{$product->name}}</b>
-                                    @if(!$loop->last),@endif
-                                @endforeach
+                                <ul class="list-disc">
+                                    @foreach ($order->products as $product)
+                                        <li>{{$product->name}}</li>
+                                    @endforeach
+                                </ul>
                             </td>
                         </tr>
                     @endforeach

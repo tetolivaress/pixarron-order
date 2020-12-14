@@ -1,11 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PassportAuthController;
+use App\Http\Controllers\{PassportAuthController, PostController};
 use App\Http\Controllers\Auth\RegisteredUserController;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +21,6 @@ Route::group(['middleware' => ['auth:api'], 'prefix' => 'user'], function(){
 		Route::get('/addresses', [RegisteredUserController::class, 'listAddresses']);
 });
 
-
+Route::get('/posts', [PostController::class, 'index'])->middleware('auth:api');
 
 Route::post('register', [PassportAuthController::class, 'register'])->middleware('auth:api');
