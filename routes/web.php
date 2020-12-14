@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\{ProductController, OrderController};
 use App\Http\Controllers\Auth\RegisteredUserController;
 
 use App\Models\Order;
@@ -24,8 +24,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/user', [RegisteredUserController::class, 'index'])->middleware('auth')->name('users.index');
-Route::get('/product', [ProductController::class, 'index'])->middleware('auth')->name('products.index');
+Route::group(['middleware' => ['auth']], function () {
+	Route::get('/users', [RegisteredUserController::class, 'index'])->name('users.index');
+	Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+	Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+});
+
 Route::get('/through', function () {
     return Order::with('address.user')->find(1);
 });

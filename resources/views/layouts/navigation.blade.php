@@ -9,12 +9,6 @@
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
-                    </a>
-                </div>
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
@@ -22,10 +16,13 @@
                     </x-nav-link>
                     @auth
                         <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
-                            {{ __('Users') }}
+                            {{ __('Usuarios') }}
                         </x-nav-link>
                         <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
-                            {{ __('Products') }}
+                            {{ __('Productos') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.index')">
+                            {{ __('Órdenes') }}
                         </x-nav-link>
                     @endauth
                 </div>
