@@ -22,7 +22,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::get('/through', function () {
-    return Order::with('user')->find(1);
+    return Order::with('address.user')->find(1);
 });
 
 require __DIR__.'/auth.php';
