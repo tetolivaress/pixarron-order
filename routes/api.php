@@ -17,8 +17,16 @@ use App\Models\User;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return User::with(['orders.products', 'addresses'])->find(Auth::user()->id);
+Route::group(['middleware' => ['auth:api'], 'prefix' => 'user'], function(){
+    Route::get('/', function (Request $request) {
+        return User::with(['orders.products', 'addresses'])->find(Auth::user()->id);
+    });
+    Route::get('/orders', function (Request $request) {
+        return User::with(['orders.products', 'addresses'])->find(Auth::user()->id)->orders;
+    });
+    Route::get('/addresses', function (Request $request) {
+        return User::with(['orders.products', 'addresses'])->find(Auth::user()->id)->addreses;
+    });
 });
 
 
