@@ -41,7 +41,16 @@ class GetPosts extends Command
      */
     public function handle()
     {
-        $response = Http::get($this->url);
-        Log::info($response->json());
+        $post = Post::get();
+        if($post->isEmpty()){
+            $posts = Http::get($this->url)->json();
+            foreach($posts as $post){
+                Post::create([
+                    'title' => $post['title'],
+                    'body' => $post['body']
+                ]);
+            }
+        }
+        $this->info('The app is already loaded with Posts data from API');
     }
 }
