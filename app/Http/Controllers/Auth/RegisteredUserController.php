@@ -13,24 +13,11 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     *
-     * @return \Illuminate\View\View
-     */
     public function create()
     {
         return view('auth.register');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -52,24 +39,24 @@ class RegisteredUserController extends Controller
 
     public function index()
     {
-				$users = User::with('addresses')->orderBy('name')->paginate(5);
-				return view('users.index', ['users' => $users]);
+        $users = User::with('addresses')->orderBy('name')->paginate(5);
+        return view('users.index', ['users' => $users]);
     }
 
-		public function listUsers()
-		{
-				return new UserResource(User::find(Auth::id()));
-		}
+    public function listUsers()
+    {
+        return new UserResource(User::find(Auth::id()));
+    }
 
     public function listOrders()
     {
-				$orders = Order::with(['address.user', 'products'])->orderBy('created_at')->get();
-				return $orders->where('address.user.id', Auth::id());
+        $orders = Order::with(['address.user', 'products'])->orderBy('created_at')->get();
+        return $orders->where('address.user.id', Auth::id());
     }
 
     public function listAddresses()
     {
-				$user = new UserResource(User::find(Auth::id()));
-				return $user->addresses;
+        $user = new UserResource(User::find(Auth::id()));
+        return $user->addresses;
     }
 }
