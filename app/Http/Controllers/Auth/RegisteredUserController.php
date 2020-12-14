@@ -52,9 +52,14 @@ class RegisteredUserController extends Controller
 
     public function index()
     {
-				return new UserResource(User::find(Auth::id()));
-        // return User::with(['orders.products', 'addresses'])->find(Auth::user()->id);
+				$users = User::with('addresses')->orderBy('name')->paginate(5);
+				return view('users.index', ['users' => $users]);
     }
+
+		public function listUsers()
+		{
+				return new UserResource(User::find(Auth::id()));
+		}
 
     public function listOrders()
     {

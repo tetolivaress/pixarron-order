@@ -19,7 +19,7 @@ use App\Models\User;
 */
 
 Route::group(['middleware' => ['auth:api'], 'prefix' => 'user'], function(){
-		Route::get('/', [RegisteredUserController::class, 'index']);
+		Route::get('/', [RegisteredUserController::class, 'listUsers']);
 		Route::get('/orders', [RegisteredUserController::class, 'listOrders']);
 		Route::get('/addresses', [RegisteredUserController::class, 'listAddresses']);
 });
