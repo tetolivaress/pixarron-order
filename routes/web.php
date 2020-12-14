@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('/through', function () {
-    return Order::with('address.user')->find(1);
+    return Order::with(['address.user', 'products'])->get();
 });
 
 require __DIR__.'/auth.php';
