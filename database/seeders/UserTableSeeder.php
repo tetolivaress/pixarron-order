@@ -15,14 +15,15 @@ class UserTableSeeder extends Seeder
             ->hasAddresses(3)
             ->create();
 
-		try {
-			User::create([
-				'name' => 'Jesus Olivares',
-				'email' => 'tetolivares@gmail.com',
-				'password' => Hash::make('1234')
-			]);
-		} catch (\Throwable $th) {
-			Log::error($th);
-		}
+        try {
+            User::create([
+                'name' => 'Jesus Olivares',
+                'email' => 'tetolivares@gmail.com',
+                'password' => Hash::make('1234'),
+                'is_admin' => true
+            ]);
+        } catch (\Throwable $th) {
+            Log::error($th);
+        }
     }
 }
