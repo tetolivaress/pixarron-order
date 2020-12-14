@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
+use App\Models\Order;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,5 +26,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/user', [RegisteredUserController::class, 'index'])->middleware('auth')->name('users.index');
 Route::get('/product', [ProductController::class, 'index'])->middleware('auth')->name('products.index');
+Route::get('/through', function () {
+    return Order::with('user')->find(1);
+});
 
 require __DIR__.'/auth.php';
