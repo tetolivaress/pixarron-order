@@ -16,11 +16,19 @@ class UserTableSeeder extends Seeder
             ->create();
 
 		try {
-			User::create([
-				'name' => 'Jesus Olivares',
-				'email' => 'tetolivares@gmail.com',
-				'password' => Hash::make('1234')
-			]);
+            User::factory()->hasAddresses(3)
+                ->create([
+                    'name' => 'Jesus Olivares',
+                    'email' => 'tetolivares@gmail.com',
+                    'password' => Hash::make('1234')
+                ]);
+
+            User::factory()->hasAddresses(3)
+                ->create([
+                    'name' => 'cliente',
+                    'email' => 'cliente@gmail.com',
+                    'password' => Hash::make('password')
+                ]);
 		} catch (\Throwable $th) {
 			Log::error($th);
 		}

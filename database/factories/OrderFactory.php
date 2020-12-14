@@ -12,7 +12,7 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            'address_id' => random_int(1, 27),
+            'address_id' => random_int(1, 33),
         ];
     }
 }
