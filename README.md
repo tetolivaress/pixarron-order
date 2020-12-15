@@ -15,7 +15,9 @@ $ php artisan passport:client --password
 ```
 ### Fill Database with External Posts data
 Run the following command to fill database with posts data
+```bash
 $ php artisan get:posts
+```
 ### Serve application
 ```bash
 $ php artisan serv
