@@ -3,17 +3,25 @@ This is my Test App for Pixarron Tech Test
 ## Installation Guide
 First, clone this repository from
 ### Install dependencies and setup Database
+```bash
 $ composer install
 $ npm install
 $ npm run dev
 $ php artisan migrate:refresh --seed
+```
 ### Setup Passport
+```bash
 $ php artisan passport:client --password
+```
 ### Fill Database with External Posts data
 Run the following command to fill database with posts data
+```bash
 $ php artisan get:posts
+```
 ### Serve application
+```bash
 $ php artisan serv
+```
 ## User Credentials
 In order to gain access to Admin Panel, you need to use the following credentials:
 **user** tetolivares@gmail.com
